@@ -30,3 +30,8 @@ class Graph:
         for vertex in self.vertices:
             if vertex.get_number() == vertex_nr:
                 return vertex
+
+    def reverse(self):
+        for edge in self.edges:
+            edge.reverse()
+

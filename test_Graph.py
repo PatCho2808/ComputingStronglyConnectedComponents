@@ -1,6 +1,7 @@
 from unittest import TestCase
 from Graph import *
 
+
 class TestGraph(TestCase):
     def test_create_graph(self):
         graph = Graph([[1, 2],
@@ -26,3 +27,18 @@ class TestGraph(TestCase):
         self.assertEqual([graph.get_vertex(2), graph.get_vertex(3)], graph.get_vertex(1).get_next_vertices())
         self.assertEqual([graph.get_vertex(3)], graph.get_vertex(2).get_next_vertices())
         self.assertEqual([graph.get_vertex(1)], graph.get_vertex(3).get_next_vertices())
+
+
+    def test_reverse_graph(self):
+
+        graph = Graph([[1, 2],
+                       [2, 3]])
+
+        graph.reverse()
+
+        self.assertEqual([graph.get_vertex(1)], graph.get_vertex(2).get_next_vertices())
+        self.assertEqual([graph.get_vertex(2)], graph.get_vertex(3).get_next_vertices())
+
+
+
+

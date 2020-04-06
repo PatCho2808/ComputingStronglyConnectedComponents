@@ -8,3 +8,8 @@ class Edge:
 
     def get_head(self):
         return self.head
+
+    def reverse(self):
+        temp = self.tail
+        self.tail = self.head
+        self.head = temp
