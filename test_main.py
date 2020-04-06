@@ -1,5 +1,5 @@
 from unittest import TestCase
-from main import *
+from ComputeStronglyConnectedComponents import *
 
 
 class TestComputeNumberOfStronglyConnectedComponents(TestCase):
@@ -22,7 +22,9 @@ class TestComputeNumberOfStronglyConnectedComponents(TestCase):
                        [3, 4],
                        [3, 5]])
 
-        self.assertEqual(4, compute_number_of_strongly_connected_components(graph))
+        compute_components = ComputeStronglyConnectedComponents(graph)
+
+        self.assertEqual(4, compute_components.compute())
 
         graph = Graph([[2, 3],
                        [1, 2],
@@ -36,4 +38,40 @@ class TestComputeNumberOfStronglyConnectedComponents(TestCase):
                        [7, 8],
                        [8, 9]])
 
-        self.assertEqual(3, compute_number_of_strongly_connected_components(graph))
+        compute_components = ComputeStronglyConnectedComponents(graph)
+
+        self.assertEqual(3, compute_components.compute())
+
+
+class TestComputeFinishingTimes(TestCase):
+    def test_compute_finishing_times_loop(self):
+        graph = Graph([[1, 4],
+                       [4, 6],
+                       [6, 5],
+                       [5, 4],
+                       [1, 2],
+                       [2, 3],
+                       [3, 1]])
+
+        compute_components = ComputeStronglyConnectedComponents(graph)
+        finishing_times = compute_components.dfs_finishing_times_loop()
+
+        self.assertEqual(5, finishing_times[graph.get_vertex(1)])
+        self.assertEqual(4, finishing_times[graph.get_vertex(2)])
+        self.assertEqual(6, finishing_times[graph.get_vertex(3)])
+        self.assertEqual(1, finishing_times[graph.get_vertex(4)])
+        self.assertEqual(2, finishing_times[graph.get_vertex(5)])
+        self.assertEqual(3, finishing_times[graph.get_vertex(6)])
+
+        graph = Graph([[1, 3],
+                       [1, 4],
+                       [3, 2]])
+
+        compute_components = ComputeStronglyConnectedComponents(graph)
+        finishing_times = compute_components.dfs_finishing_times_loop()
+
+        self.assertEqual(4, finishing_times[graph.get_vertex(1)])
+        self.assertEqual(2, finishing_times[graph.get_vertex(2)])
+        self.assertEqual(3, finishing_times[graph.get_vertex(3)])
+        self.assertEqual(1, finishing_times[graph.get_vertex(4)])
+

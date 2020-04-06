@@ -35,3 +35,6 @@ class Graph:
         for edge in self.edges:
             edge.reverse()
 
+    def get_number_of_vertices(self):
+        return len(self.vertices)
+
