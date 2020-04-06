@@ -55,14 +55,13 @@ class TestComputeFinishingTimes(TestCase):
 
         compute_components = ComputeStronglyConnectedComponents(graph)
         finishing_times = compute_components.dfs_finishing_times_loop()
-        print(finishing_times)
 
-        self.assertEqual(5, finishing_times[graph.get_vertex(1)])
-        self.assertEqual(4, finishing_times[graph.get_vertex(2)])
-        self.assertEqual(6, finishing_times[graph.get_vertex(3)])
-        self.assertEqual(1, finishing_times[graph.get_vertex(4)])
-        self.assertEqual(2, finishing_times[graph.get_vertex(5)])
-        self.assertEqual(3, finishing_times[graph.get_vertex(6)])
+        self.assertEqual(graph.get_vertex(1), finishing_times[5])
+        self.assertEqual(graph.get_vertex(2), finishing_times[4])
+        self.assertEqual(graph.get_vertex(3), finishing_times[6])
+        self.assertEqual(graph.get_vertex(4), finishing_times[1])
+        self.assertEqual(graph.get_vertex(5), finishing_times[2])
+        self.assertEqual(graph.get_vertex(6), finishing_times[3])
 
         graph = Graph([[1, 3],
                        [1, 4],
@@ -71,8 +70,7 @@ class TestComputeFinishingTimes(TestCase):
         compute_components = ComputeStronglyConnectedComponents(graph)
         finishing_times = compute_components.dfs_finishing_times_loop()
 
-        self.assertEqual(4, finishing_times[graph.get_vertex(1)])
-        self.assertEqual(2, finishing_times[graph.get_vertex(2)])
-        self.assertEqual(3, finishing_times[graph.get_vertex(3)])
-        self.assertEqual(1, finishing_times[graph.get_vertex(4)])
-
+        self.assertEqual(graph.get_vertex(1), finishing_times[4])
+        self.assertEqual(graph.get_vertex(2), finishing_times[2])
+        self.assertEqual(graph.get_vertex(3), finishing_times[3])
+        self.assertEqual(graph.get_vertex(4), finishing_times[1])
