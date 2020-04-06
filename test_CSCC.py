@@ -20,7 +20,8 @@ class TestComputeNumberOfStronglyConnectedComponents(TestCase):
                        [7, 4],
                        [4, 5],
                        [3, 4],
-                       [3, 5]])
+                       [3, 5],
+                       [8, 9]])
 
         compute_components = ComputeStronglyConnectedComponents(graph)
 

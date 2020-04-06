@@ -27,4 +27,7 @@ class Vertex:
     def get_is_explored(self):
         return self.explored
 
+    def set_as_unexplored(self):
+        self.explored = False
+
 

@@ -38,3 +38,7 @@ class Graph:
     def get_number_of_vertices(self):
         return len(self.vertices)
 
+    def reset_vertices(self):
+        for vertex in self.vertices:
+            vertex.set_as_unexplored()
+

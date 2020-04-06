@@ -16,8 +16,9 @@ class ComputeStronglyConnectedComponents:
         self.graph.reverse()
         self.dfs_finishing_times_loop()
         self.graph.reverse()
-        # DFS_loop(graph)
-        return 0
+        self.graph.reset_vertices()
+        self.dfs_compute_components_loop()
+        return self.number_of_components
 
     def dfs_finishing_times_loop(self):
         for i in range(self.graph.get_number_of_vertices(), 0, -1):
@@ -38,4 +39,14 @@ class ComputeStronglyConnectedComponents:
 
     def dfs_compute_components_loop(self):
         for i in range(len(self.finishing_times), 0, -1):
-            vertex = self.finishing_times
+            vertex = self.finishing_times[i]
+            if not vertex.get_is_explored():
+                self.dfs_compute_components(vertex)
+                self.number_of_components = self.number_of_components + 1
+        return self.number_of_components
+
+    def dfs_compute_components(self, vertex):
+        vertex.set_as_explored()
+        for next_vertex in vertex.get_next_vertices():
+            if not next_vertex.get_is_explored():
+                self.dfs_compute_components(next_vertex)
