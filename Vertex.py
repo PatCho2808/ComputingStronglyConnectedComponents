@@ -21,5 +21,10 @@ class Vertex:
     def get_edges(self):
         return self.edges
 
+    def set_as_explored(self):
+        self.explored = True
+
+    def get_is_explored(self):
+        return self.explored
 
 

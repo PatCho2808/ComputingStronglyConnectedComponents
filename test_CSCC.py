@@ -55,6 +55,7 @@ class TestComputeFinishingTimes(TestCase):
 
         compute_components = ComputeStronglyConnectedComponents(graph)
         finishing_times = compute_components.dfs_finishing_times_loop()
+        print(finishing_times)
 
         self.assertEqual(5, finishing_times[graph.get_vertex(1)])
         self.assertEqual(4, finishing_times[graph.get_vertex(2)])

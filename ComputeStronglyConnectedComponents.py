@@ -6,6 +6,8 @@ class ComputeStronglyConnectedComponents:
         self.graph = graph
         self.finishing_time = 0
         self.leading_node = None
+        self.leaders = {}
+        self.finishing_times = {}
 
     def compute(self):
         self.finishing_time = 0
@@ -17,7 +19,18 @@ class ComputeStronglyConnectedComponents:
         return 0
 
     def dfs_finishing_times_loop(self):
-        return {}
+        for i in range(self.graph.get_number_of_vertices(), 0, -1):
+            vertex = self.graph.get_vertex(i)
+            if not vertex.get_is_explored():
+                self.leading_node = vertex
+                self.dfs_finishing_times(vertex)
+        return self.finishing_times
 
-    def dfs_finishing_times(self):
-        return 0
+    def dfs_finishing_times(self, vertex):
+        vertex.set_as_explored()
+        self.leaders[vertex] = self.leading_node
+        for next_vertex in vertex.get_next_vertices():
+            if not next_vertex.get_is_explored():
+                self.dfs_finishing_times(next_vertex)
+        self.finishing_time = self.finishing_time + 1
+        self.finishing_times[vertex] = self.finishing_time
